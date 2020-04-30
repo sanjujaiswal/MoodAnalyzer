@@ -13,14 +13,24 @@ namespace MoodAnalyzer
         }
         public string analysisOfMood()
         {
-            if (massage.Contains("Sad"))
+            try
             {
-                return "Sad";
+                if (massage.Contains("Sad"))
+                {
+                    return "Sad";
+                }
+                else
+                {
+                    return "Happy";
+                }
+
             }
-            else
+            catch
             {
                 return "Happy";
             }
+
         }
     }
 }
+
