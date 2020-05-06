@@ -13,6 +13,10 @@ namespace MoodAnalyzer
             this.massage = massage;
         }
         //Throw and catch generated exception 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string analysisOfMood()
         {
             try
