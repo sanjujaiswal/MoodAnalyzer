@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
+using MoodAnalyzer;
 
 namespace MoodAnalyzer
 {
@@ -41,11 +42,42 @@ namespace MoodAnalyzer
                     throw new moodAnalysisException(moodAnalysisException.ExceptionType.NO_OBJECT_IS_CREATED, ex.Message);
                 }
             }
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <returns> geting the information about the constructor - newConstructor at index 0 </returns>
-            public ConstructorInfo newConstructor()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="constructor"></param>
+        /// <param name="className"></param>
+        /// <param name="massage"></param>
+        /// <returns></returns>
+        public object createMoodAnalyser(ConstructorInfo constructor, string className, string massage)
+        {
+            try
+            {
+                Type type = typeof(E);
+                if (className != type.Name)
+                {
+                    throw new moodAnalysisException(moodAnalysisException.ExceptionType.CLASS_NOT_FOUND, "Class Not Found");
+                }
+                if (constructor != type.GetConstructors()[0])
+                {
+                    throw new moodAnalysisException(moodAnalysisException.ExceptionType.METHOD_NOT_FOUND, "Method Not Found");
+                }
+
+                //var obj2 = constructor.Invoke(new object[0]);
+                //To activate the initialized object
+                object returnObject = Activator.CreateInstance(type, massage);
+                return returnObject;
+            }
+            catch (Exception ex)
+            {
+                throw new moodAnalysisException(moodAnalysisException.ExceptionType.NO_OBJECT_IS_CREATED, ex.Message);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns> geting the information about the constructor - newConstructor at index 0 </returns>
+        public ConstructorInfo newConstructor()
             {
                 try
                 {
@@ -66,6 +98,32 @@ namespace MoodAnalyzer
                     throw new moodAnalysisException(moodAnalysisException.ExceptionType.CLASS_NOT_FOUND, "Class Not Available");
 
                 }
+        }
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="numberOfParameters">Created parameterised constructor</param>
+            /// <returns></returns>
+            public ConstructorInfo ParameterisedConstructor(int numberOfParameters)
+            {
+                try
+                {
+                    Type type = typeof(E);
+                    ConstructorInfo[] constructor = type.GetConstructors();
+                    foreach (ConstructorInfo temp in constructor)
+                    {
+                        if (temp.GetParameters().Length == numberOfParameters)
+                        {
+                            Console.WriteLine(temp);
+                            return temp;
+                        }
+                    }
+                    return constructor[0];
+                }
+                catch (Exception e)
+                {
+                    throw new moodAnalysisException(moodAnalysisException.ExceptionType.CLASS_NOT_FOUND, "this class not available");
+                }
             }
         }
-    }
+}
