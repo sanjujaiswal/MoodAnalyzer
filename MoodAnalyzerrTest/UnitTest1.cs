@@ -60,7 +60,7 @@ namespace MoodAnalyzerrTest
             [Test]
             public void fordefaultConstructor()
             {
-               
+
                 MoodAnalyzerReflection<MoodAnalysis> obj = new MoodAnalyzerReflection<MoodAnalysis>();
                 ConstructorInfo returnObject = obj.newConstructor();
                 object constructor = obj.createMoodAnalyser(returnObject, "MoodAnalysis", "Class Not Found");
@@ -145,6 +145,14 @@ namespace MoodAnalyzerrTest
                 {
                     Assert.AreEqual("Class Not Found", e.Message);
                 }
+            }
+
+            [Test]
+            public void changeMoodDynamically()
+            {
+                    MoodAnalyzerReflection<MoodAnalysis> analyser = new MoodAnalyzerReflection<MoodAnalysis>();
+                string str = analyser.MoodChangeDynamically("Happy");
+                Assert.AreEqual("Happy", str);
             }
 
         }

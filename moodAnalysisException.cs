@@ -8,10 +8,7 @@ namespace MoodAnalyzer
     {
         public enum ExceptionType
         {
-            EMPTY, NULL,
-            CLASS_NOT_FOUND,
-            NO_OBJECT_IS_CREATED,
-            METHOD_NOT_FOUND
+            EMPTY, NULL, CLASS_NOT_FOUND, NO_OBJECT_IS_CREATED, METHOD_NOT_FOUND, NO_SUCH_FIELD
         }
         ExceptionType type;
         public moodAnalysisException(ExceptionType type, string massage) : base(massage)
