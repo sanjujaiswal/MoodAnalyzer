@@ -128,7 +128,14 @@ namespace MoodAnalyzer
                     throw new moodAnalysisException(moodAnalysisException.ExceptionType.CLASS_NOT_FOUND, "this class not available");
                 }
         }
-        public dynamic MoodChangeDynamically(string mood)
+        public object InvokeToChangeMood(string mood)
+        {
+            MoodAnalysis moodObject = new MoodAnalysis("Happy");
+            object invokeObject = moodObject.analysisOfMood();
+            return invokeObject;
+        }
+
+    public dynamic MoodChangeDynamically(string mood)
         { 
          try
             {
