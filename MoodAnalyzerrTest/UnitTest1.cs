@@ -148,6 +148,14 @@ namespace MoodAnalyzerrTest
             }
 
             [Test]
+            public void CheckMoodReturnsHappy()
+            {
+                MoodAnalyzerReflection<MoodAnalysis> moodStore = new MoodAnalyzerReflection<MoodAnalysis>();
+                object returnMood = moodStore.InvokeToChangeMood("Happy");
+                Assert.AreEqual("Happy", returnMood);
+            }
+
+            [Test]
             public void changeMoodDynamically()
             {
                     MoodAnalyzerReflection<MoodAnalysis> analyser = new MoodAnalyzerReflection<MoodAnalysis>();
